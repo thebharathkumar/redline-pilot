@@ -246,7 +246,7 @@
   },
   "edits": {
     "model": "claude-sonnet-5-5",
-    "date": "2026-10-27T08:47:43Z",
+    "date": "2026-10-27T08:52:44Z",
     "command": "redline eval --edits eval/gold",
     "gold_files": 1,
     "predicted": 10,
@@ -269,13 +269,13 @@
         1.0
       ]
     },
-    "find_token_f1": 0.743416358764567,
-    "replace_token_f1": 0.7346001544456661,
+    "find_token_f1": 0.800227231261714,
+    "replace_token_f1": 0.7779621788546336,
     "usage": {
       "calls": 1,
       "input_tokens": 6193,
-      "output_tokens": 4101,
-      "mean_seconds": 24.453365915978793
+      "output_tokens": 4166,
+      "mean_seconds": 25.121768167009577
     }
   }
 }

@@ -26,7 +26,7 @@ Model calls: 25, input tokens: 174868, output tokens: 115769, mean latency: 32.2
 ## Edits
 
 Model: claude-sonnet-5-5  
-Date: 2026-10-27T08:47:43Z  
+Date: 2026-10-27T08:52:44Z  
 Command: `redline eval --edits eval/gold`
 
 Gold files: 1. An edit matches when (paragraph_id, rule_id) agree. Rates are k/n with a Wilson 95% interval.
@@ -35,7 +35,7 @@ Gold files: 1. An edit matches when (paragraph_id, rule_id) agree. Rates are k/n
 |---|---|
 | precision | 9/10 = 0.90 [0.60, 0.98] |
 | recall | 9/9 = 1.00 [0.70, 1.00] |
-| find F1: mean token F1 of the targeted wording, matched edits | 0.74 |
-| replace F1: mean token F1 of the proposed wording, matched edits | 0.73 |
+| find F1: mean token F1 of the targeted wording, matched edits | 0.80 |
+| replace F1: mean token F1 of the proposed wording, matched edits | 0.78 |
 
-Model calls: 1, input tokens: 6193, output tokens: 4101, mean latency: 24.5 s
+Model calls: 1, input tokens: 6193, output tokens: 4166, mean latency: 25.1 s
