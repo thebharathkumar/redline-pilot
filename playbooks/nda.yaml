@@ -1,0 +1,200 @@
+# Buyer-side NDA playbook. Preferred positions follow the Common Paper Mutual NDA
+# Standard Terms v1.0 (CC BY 4.0). See DATA.md for attribution.
+name: Mutual NDA, buyer side
+based_on: Common Paper Mutual NDA Standard Terms v1.0
+rules:
+  - id: ci-marking
+    clause_type: definition
+    name: No marking requirement
+    preferred: >-
+      Confidential Information covers what the discloser identifies as confidential and anything
+      a reasonable person would understand to be confidential, with no marking or written
+      confirmation needed.
+    fallbacks:
+      - Unmarked information is covered if the discloser identifies it as confidential in writing within 30 days.
+    red_flags:
+      - Only information marked "confidential" at the time of disclosure is protected.
+      - Oral or visual disclosures are protected only if summarized in writing.
+    required: true
+    suggested_text: >-
+      "Confidential Information" means information that the Disclosing Party identifies as
+      confidential, proprietary or the like, or that should reasonably be understood as
+      confidential or proprietary due to its nature and the circumstances of its disclosure.
+    contractnli: null
+
+  - id: ci-oral
+    clause_type: definition
+    name: Oral disclosures covered
+    preferred: >-
+      Information disclosed orally or visually, for example in demos and calls, is protected the
+      same way as written information.
+    fallbacks:
+      - Oral disclosures are covered if identified as confidential at the time of disclosure.
+    red_flags:
+      - Confidential Information is limited to written or tangible materials.
+    required: false
+    contractnli: nda-3
+
+  - id: ci-scope
+    clause_type: definition
+    name: Business information included
+    preferred: >-
+      The definition covers business information as well as technical information, including
+      pricing, roadmaps, security and compliance documentation, and the existence of the
+      discussions.
+    fallbacks:
+      - Business information is covered when it is identified as confidential.
+    red_flags:
+      - Confidential Information is limited to technical information, source code or trade secrets.
+    required: false
+    contractnli: null
+
+  - id: disc-employees
+    clause_type: permitted_disclosure
+    name: Sharing with employees
+    preferred: >-
+      We may share Confidential Information with employees who need to know it for the Purpose,
+      as long as they are bound by confidentiality obligations at least as protective as the NDA.
+    fallbacks:
+      - Disclosure to employees is limited to a named team, provided we remain responsible for them.
+    red_flags:
+      - Any disclosure to employees needs the discloser's prior written consent.
+      - Each employee must sign a separate agreement with the discloser.
+    required: true
+    suggested_text: >-
+      The Receiving Party may disclose Confidential Information to its employees having a
+      reasonable need to know for the Purpose, provided they are bound by confidentiality
+      obligations no less protective than this Agreement and the Receiving Party remains
+      responsible for their compliance.
+    contractnli: nda-5
+
+  - id: disc-advisors
+    clause_type: permitted_disclosure
+    name: Sharing with advisors and contractors
+    preferred: >-
+      We may also share with agents, advisors, contractors and other representatives who need to
+      know, on the same conditions as employees.
+    fallbacks:
+      - Disclosure to legal and financial advisors only, without consent.
+    red_flags:
+      - No disclosure to any third party, including professional advisors, without prior written consent.
+    required: false
+    contractnli: nda-7
+
+  - id: disc-legal
+    clause_type: permitted_disclosure
+    name: Disclosure required by law
+    preferred: >-
+      Either party may disclose to the extent required by law, regulation, subpoena or court order,
+      giving reasonable advance notice where legally permitted and reasonable cooperation at the
+      discloser's expense.
+    fallbacks:
+      - Prompt notice after the disclosure, where advance notice is not legally permitted.
+    red_flags:
+      - No carve-out for legally compelled disclosure.
+      - The recipient must contest the order or bear the cost of seeking a protective order.
+    required: true
+    suggested_text: >-
+      The Receiving Party may disclose Confidential Information to the extent required by law,
+      regulation or regulatory authority, subpoena or court order, provided (to the extent legally
+      permitted) it gives the Disclosing Party reasonable advance notice and reasonably cooperates,
+      at the Disclosing Party's expense, with efforts to obtain confidential treatment.
+    contractnli: nda-8
+
+  - id: term-survival
+    clause_type: term_survival
+    name: Obligations survive termination
+    preferred: >-
+      Confidentiality obligations survive expiration or termination of the NDA for the stated
+      Term of Confidentiality.
+    fallbacks: []
+    red_flags:
+      - Obligations end when the NDA expires or is terminated.
+    required: true
+    suggested_text: >-
+      The Receiving Party's obligations relating to Confidential Information will survive for the
+      Term of Confidentiality, despite any expiration or termination of this Agreement.
+    contractnli: nda-19
+
+  - id: term-length
+    clause_type: term_survival
+    name: Length of confidentiality
+    preferred: >-
+      Confidentiality lasts one year from the Effective Date, and for trade secrets for as long as
+      they remain trade secrets under applicable law.
+    fallbacks:
+      - Up to three years from the Effective Date, with trade secrets protected while they remain trade secrets.
+    red_flags:
+      - Obligations last in perpetuity for all Confidential Information.
+      - The confidentiality period runs from each disclosure with no end date.
+    required: false
+    contractnli: null
+
+  - id: ret-destroy
+    clause_type: return_destruction
+    name: Return or destruction
+    preferred: >-
+      On expiration, termination or request, the recipient stops using Confidential Information and,
+      after a written request, returns or destroys it at its option and confirms in writing if asked.
+    fallbacks:
+      - Return or destruction within 30 days of a written request.
+    red_flags:
+      - Return of all materials within a short deadline, with no option to destroy instead.
+      - A sworn certificate signed by an officer.
+    required: true
+    suggested_text: >-
+      Upon expiration or termination of this Agreement or upon the Disclosing Party's earlier
+      request, the Receiving Party will cease using Confidential Information and, promptly after a
+      written request, destroy or return it, and if requested confirm its compliance in writing.
+    contractnli: nda-16
+
+  - id: ret-retention
+    clause_type: return_destruction
+    name: Backup and legal retention
+    preferred: >-
+      We may keep copies in standard backups or record retention systems, or as required by law,
+      with the NDA continuing to apply to anything kept.
+    fallbacks:
+      - Retention in backups only, with no active access, until overwritten in the normal course.
+    red_flags:
+      - All copies, including electronic backups, must be permanently deleted.
+    required: true
+    suggested_text: >-
+      The Receiving Party may retain Confidential Information in accordance with its standard
+      backup or record retention policies or as required by law, but the terms of this Agreement
+      will continue to apply to the retained Confidential Information.
+    contractnli: nda-20
+
+  - id: rem-equitable
+    clause_type: remedies_law
+    name: Equitable relief
+    preferred: >-
+      The discloser may seek equitable relief, including an injunction, in addition to other
+      remedies, without a pre-agreed amount of damages.
+    fallbacks:
+      - The discloser may seek an injunction without posting a bond.
+    red_flags:
+      - Liquidated damages or a fixed penalty per breach.
+      - The recipient indemnifies the discloser for all losses and legal fees arising from any breach.
+      - The recipient concedes that any breach causes irreparable harm and entitles the discloser to an injunction.
+    required: false
+    contractnli: null
+
+  - id: law-venue
+    clause_type: remedies_law
+    name: Governing law and venue
+    preferred: >-
+      New York law governs, with exclusive jurisdiction in the state and federal courts located in
+      New York County, New York.
+    fallbacks:
+      - Delaware law and courts.
+      - The defendant's home state.
+    red_flags:
+      - Law or courts outside the United States.
+      - Mandatory arbitration seated in the counterparty's home city.
+    required: true
+    suggested_text: >-
+      This Agreement is governed by the laws of the State of New York, without regard to its
+      conflict of laws provisions, and the parties submit to the exclusive jurisdiction of the
+      state and federal courts located in New York County, New York.
+    contractnli: null
