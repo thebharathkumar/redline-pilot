@@ -1,7 +1,7 @@
 PY ?= .venv/bin/python
 DEMO_DATE = 2026-01-01T00:00:00Z
 
-.PHONY: install test demo fixtures
+.PHONY: install test demo fixtures readme
 
 install:
 	python3.11 -m venv .venv
@@ -18,3 +18,6 @@ demo:
 	@mkdir -p out
 	$(PY) -m redline.cli review fixtures/counterparty_nda.docx --playbook playbooks/nda.yaml \
 		--offline fixtures/demo_response.json --date $(DEMO_DATE) --out out/demo_redlined.docx
+
+readme:
+	$(PY) scripts/update_readme.py
