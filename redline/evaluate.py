@@ -68,6 +68,10 @@ def run_detection(provider: Provider, playbook: Playbook, n: int, docx_dir: Path
     }
 
 
+def mean(values: list[float]) -> float | None:
+    return sum(values) / len(values) if values else None
+
+
 def run_edits(provider: Provider, gold_dir: Path, responses_dir: Path) -> dict:
     from redline.playbook import load_playbook
     from redline.validate import validate
@@ -77,7 +81,7 @@ def run_edits(provider: Provider, gold_dir: Path, responses_dir: Path) -> dict:
         raise SystemExit(f"no gold files in {gold_dir} (TEMPLATE.yaml is ignored)")
     responses_dir.mkdir(parents=True, exist_ok=True)
     n_predicted = n_gold = n_matched = 0
-    span_f1 = []
+    find_f1, replace_f1 = [], []
     for path, gold in gold_files:
         playbook = load_playbook(gold.playbook)
         document = load(gold.document)
@@ -90,14 +94,16 @@ def run_edits(provider: Provider, gold_dir: Path, responses_dir: Path) -> dict:
         n_predicted += len(predicted)
         n_gold += len(gold.edits)
         n_matched += len(pairs)
-        span_f1 += [token_f1(p.find, g.find) for p, g in pairs]
+        find_f1 += [token_f1(p.find, g.find) for p, g in pairs]
+        replace_f1 += [token_f1(p.replace, g.replace) for p, g in pairs]
     return {
         "gold_files": len(gold_files),
         "predicted": n_predicted,
         "gold": n_gold,
         "precision": rate(n_matched, n_predicted),
         "recall": rate(n_matched, n_gold),
-        "span_token_f1": sum(span_f1) / len(span_f1) if span_f1 else None,
+        "find_token_f1": mean(find_f1),
+        "replace_token_f1": mean(replace_f1),
         "usage": usage_summary(provider),
     }
 
@@ -166,7 +172,8 @@ def render_edits(e: dict) -> list[str]:
         "|---|---|",
         f"| precision | {format_rate(e['precision'])} |",
         f"| recall | {format_rate(e['recall'])} |",
-        f"| mean token F1 of matched spans | {f1_text(e['span_token_f1'])} |",
+        f"| find F1: mean token F1 of the targeted wording, matched edits | {f1_text(e['find_token_f1'])} |",
+        f"| replace F1: mean token F1 of the proposed wording, matched edits | {f1_text(e['replace_token_f1'])} |",
     ]
     return lines + [""] + usage_line(e.get("usage"))
 

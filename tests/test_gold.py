@@ -44,7 +44,7 @@ def test_run_edits_scores_validated_edits(tmp_path):
     (gold_dir / "case.yaml").write_text(yaml.safe_dump({
         "document": "fixtures/counterparty_nda.docx",
         "edits": [
-            {"paragraph_id": "p0013", "rule_id": "law-venue", "find": "Texas", "replace": "New York"},
+            {"paragraph_id": "p0013", "rule_id": "law-venue", "find": "Texas", "replace": "the State of New York"},
             {"paragraph_id": "p0011", "rule_id": "term-length", "find": "In perpetuity.", "replace": "1 year."},
         ],
     }))
@@ -63,8 +63,12 @@ def test_run_edits_scores_validated_edits(tmp_path):
     assert (data["predicted"], data["gold"]) == (2, 2)
     assert (data["precision"]["k"], data["precision"]["n"]) == (1, 2)
     assert (data["recall"]["k"], data["recall"]["n"]) == (1, 2)
-    assert data["span_token_f1"] == 1.0
+    assert data["find_token_f1"] == 1.0
+    assert data["replace_token_f1"] == pytest.approx(4 / 7)
     md_path = tmp_path / "results.md"
     evaluate.write_results("edits", data, "fake-model", "redline eval --edits gold", tmp_path / "r.json", md_path)
-    assert "| precision | 1/2" in md_path.read_text()
+    md = md_path.read_text()
+    assert "| precision | 1/2" in md
+    assert "| find F1: mean token F1 of the targeted wording, matched edits | 1.00 |" in md
+    assert "| replace F1: mean token F1 of the proposed wording, matched edits | 0.57 |" in md
     assert json.loads((tmp_path / "r.json").read_text())["edits"]["gold_files"] == 1
