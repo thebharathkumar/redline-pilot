@@ -1,0 +1,67 @@
+# Gold edits for the demo contract. One entry per deviation in fixtures/DEVIATIONS.md
+# (law-venue changes two cover-page fields, so it has two entries).
+#
+# These labels were written by a language model from playbooks/nda.yaml, without looking at
+# fixtures/demo_response.json. They were not written by a human reviewer, so the edit scores
+# measure agreement between two model passes, not accuracy against a lawyer.
+#
+# Each find is trimmed to the words a reviewer would strike. Positions follow each rule's
+# preferred text, not its fallbacks.
+
+document: fixtures/counterparty_nda.docx
+playbook: playbooks/nda.yaml
+
+edits:
+  # Section 1. Remove the marking and written-summary requirement.
+  - paragraph_id: p0039
+    rule_id: ci-marking
+    find: "is marked “confidential” or “proprietary” at the time of disclosure to the receiving party (“Receiving Party”) and, if disclosed orally, is summarized in writing and marked as confidential within ten (10) days of disclosure"
+    replace: "the Disclosing Party identifies to the receiving party (“Receiving Party”) as “confidential”, “proprietary”, or the like, or that should reasonably be understood as confidential or proprietary due to its nature and the circumstances of its disclosure"
+
+  # Section 1. Restore business information to the definition.
+  - paragraph_id: p0039
+    rule_id: ci-scope
+    find: "is limited to technical information, source code and trade secrets"
+    replace: "includes technical or business information, product designs or roadmaps, requirements, pricing, security and compliance documentation, technology, inventions and know-how"
+
+  # Section 2(b). Add advisors and contractors.
+  - paragraph_id: p0040
+    rule_id: disc-advisors
+    find: "employees"
+    replace: "employees, agents, advisors, contractors and other representatives"
+
+  # Section 4. Reasonable cooperation at the discloser's cost, no duty to contest.
+  - paragraph_id: p0042
+    rule_id: disc-legal
+    find: "uses best efforts, at the Receiving Party’s expense, to contest the requirement and to support"
+    replace: "reasonably cooperates, at the Disclosing Party’s expense, with"
+
+  # Cover Page, Term of Confidentiality.
+  - paragraph_id: p0011
+    rule_id: term-length
+    find: "In perpetuity."
+    replace: "1 year from Effective Date, but in the case of trade secrets until Confidential Information is no longer considered a trade secret under applicable laws."
+
+  # Section 6. Allow backup and legal retention instead of permanent deletion.
+  - paragraph_id: p0044
+    rule_id: ret-retention
+    find: "will permanently delete all Confidential Information, including copies held in electronic backup systems"
+    replace: "may retain Confidential Information in accordance with its standard backup or record retention policies or as required by law, but the terms of this MNDA will continue to apply to the retained Confidential Information"
+
+  # Section 10. Right to seek equitable relief; no liquidated damages.
+  - paragraph_id: p0048
+    rule_id: rem-equitable
+    find: "an injunction without posting a bond, and the Receiving Party will pay liquidated damages of $50,000 for each breach"
+    replace: "seek appropriate equitable relief, including an injunction"
+
+  # Cover Page, Governing Law.
+  - paragraph_id: p0013
+    rule_id: law-venue
+    find: "Texas"
+    replace: "New York"
+
+  # Cover Page, Jurisdiction.
+  - paragraph_id: p0015
+    rule_id: law-venue
+    find: "Travis County, Texas"
+    replace: "New York County, New York"

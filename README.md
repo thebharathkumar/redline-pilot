@@ -97,6 +97,8 @@ ContractNLI test split, n = 25 documents. A rule should be flagged when the Cont
 Model calls: 25, input tokens: 174868, output tokens: 115769, mean latency: 32.2 s
 <!-- eval:end -->
 
+The gold labels for the edit eval (`eval/gold/counterparty_nda.yaml`) were written by a language model from the playbook, without seeing the model's saved demo response. No human reviewer wrote them, so the edit scores measure agreement between two model passes, not accuracy against a lawyer. There is one gold file with 9 edits, so the sample is small.
+
 ## Decisions
 
 TODO
