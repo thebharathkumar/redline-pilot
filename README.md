@@ -118,11 +118,24 @@ The gold labels for the edit eval (`eval/gold/counterparty_nda.yaml`) were writt
 
 ## Decisions
 
-TODO
+- **Edits are a paragraph id plus an exact quote.** The model names the paragraph and copies the words it wants to change. Code can check that the quote occurs exactly once on whole words before anything is written, and the edit eval scores the same records the writer uses.
+- **Bad edits are dropped, not repaired.** An edit whose quote is missing, repeated, overlapping or tied to an unknown rule is logged on stderr and skipped. The output never contains a change the model did not quote exactly.
+- **The OOXML is written directly with lxml.** Run splitting, copied formatting, revision ids and dates are all in this code and covered by tests, instead of depending on a library's behavior.
+- **Word-level diffs.** Only the words that change are marked, so a reviewer reads a small redline. When the replacement shares little with the original (similarity below 0.4), it is shown as one deletion and one insertion, which reads better than scattered fragments.
+- **Contract text is treated as data.** The contract goes first inside `<contract>` tags with a note that it is not instructions, and the instructions come last, so text in a counterparty draft cannot redirect the review.
+- **A replay provider.** Saved model responses can be replayed, so the demo and the tests run without an API key and the demo output is byte-stable.
+- **ContractNLI for detection.** It is public, licensed CC BY 4.0, and has labels for several of the same clause types, so detection can be measured on contracts that were not written for this project.
 
 ## Limits
 
-TODO
+- **Small samples.** Detection uses 25 ContractNLI documents and the intervals are wide; ci-oral has a single positive example. The edit eval has one gold file with 9 edits.
+- **Model-written gold labels.** The edit eval's gold file was written by a language model, so its scores show agreement between two model passes, not accuracy against a lawyer.
+- **Run-to-run variance.** Re-running the edit eval with the same gold file moved find F1 from 0.74 to 0.80 and replace F1 from 0.73 to 0.78, so a single run is noisy.
+- **Approximate detection labels.** A rule counts as flagged when the model proposes any edit or missing-clause note for it. ContractNLI labels whether a clause entails or contradicts a hypothesis, not whether a buyer would push back, so some of the gap between precision and recall may be clauses a buyer would still push back on. How much was not measured.
+- **Missing clauses are comments only.** A required clause that is absent gets a comment with suggested text, not a tracked paragraph insertion.
+- **One call per document.** Only `--mode single` exists; a per-clause mode was not built or compared.
+- **One model, one playbook.** Results are for one model and one buyer-side NDA playbook in English.
+- **Body text only.** Headers, footers and text boxes are not reviewed, and documents that already contain tracked changes are refused.
 
 ## Data and licenses
 
