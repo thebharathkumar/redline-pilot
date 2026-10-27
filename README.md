@@ -4,8 +4,6 @@ redline-pilot reviews a counterparty NDA (.docx) against a playbook and writes a
 
 ![Tracked changes and comments in Word](docs/word_redline.png)
 
-(Screenshot not added yet.)
-
 ## Quickstart
 
 ```sh
