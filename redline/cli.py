@@ -93,8 +93,8 @@ def run_eval(args, argv: list[str], provider=None) -> int:
         )
         evaluate.write_results("detection", data, model, command)
     if args.edits:
-        print("error: --edits is not implemented yet", file=sys.stderr)
-        return 2
+        data = evaluate.run_edits(provider, Path(args.edits), contractnli.DATA / "responses" / "edits")
+        evaluate.write_results("edits", data, model, command)
     print(f"wrote {evaluate.RESULTS_JSON} and {evaluate.RESULTS_MD}", file=sys.stderr)
     return 0
 

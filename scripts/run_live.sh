@@ -33,10 +33,19 @@ detection() {
     "$PY" -m redline.cli eval --detection contractnli --n 25
 }
 
+edits() {
+    if ! ls eval/gold/*.yaml 2>/dev/null | grep -qv TEMPLATE.yaml; then
+        echo "skipping edit eval: no gold files in eval/gold yet" >&2
+        return 0
+    fi
+    "$PY" -m redline.cli eval --edits eval/gold
+}
+
 step="${1:-all}"
 case "$step" in
     demo) demo ;;
     detection) detection ;;
-    all) demo; detection ;;
-    *) echo "usage: scripts/run_live.sh [demo|detection|all]" >&2; exit 2 ;;
+    edits) edits ;;
+    all) demo; detection; edits ;;
+    *) echo "usage: scripts/run_live.sh [demo|detection|edits|all]" >&2; exit 2 ;;
 esac

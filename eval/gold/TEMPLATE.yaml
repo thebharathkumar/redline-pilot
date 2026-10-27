@@ -1,0 +1,14 @@
+# Gold edits for one contract. Copy to eval/gold/<name>.yaml and fill in by hand.
+# Files named TEMPLATE.yaml are ignored by `redline eval --edits`.
+#
+# List paragraph ids for a document with:
+#   .venv/bin/python -c "from redline.parse import load; [print(p.id, p.text) for p in load('PATH.docx').paragraphs if p.text]"
+
+document: fixtures/counterparty_nda.docx   # the .docx the edits apply to
+playbook: playbooks/nda.yaml
+
+edits:
+  - paragraph_id: p0000                    # paragraph the edit belongs to
+    rule_id: rule-id                       # a rule id from the playbook
+    find: exact text in that paragraph that should change
+    replace: what it should become, or "" to delete it

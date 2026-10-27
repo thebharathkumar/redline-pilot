@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from redline import contractnli
+from redline.gold import load_gold_dir, match_edits, token_f1
 from redline.parse import load
 from redline.playbook import Playbook
 from redline.provider import Provider, save_response
@@ -63,6 +64,40 @@ def run_detection(provider: Provider, playbook: Playbook, n: int, docx_dir: Path
             r.id: {"hypothesis": r.contractnli, "required": r.required, **scores(per_rule[r.id])} for r in rules
         },
         "overall": scores(overall),
+        "usage": usage_summary(provider),
+    }
+
+
+def run_edits(provider: Provider, gold_dir: Path, responses_dir: Path) -> dict:
+    from redline.playbook import load_playbook
+    from redline.validate import validate
+
+    gold_files = load_gold_dir(gold_dir)
+    if not gold_files:
+        raise SystemExit(f"no gold files in {gold_dir} (TEMPLATE.yaml is ignored)")
+    responses_dir.mkdir(parents=True, exist_ok=True)
+    n_predicted = n_gold = n_matched = 0
+    span_f1 = []
+    for path, gold in gold_files:
+        playbook = load_playbook(gold.playbook)
+        document = load(gold.document)
+        result = provider.review(document, playbook)
+        save_response(result, str(responses_dir / f"{path.stem}.json"))
+        # Score only the edits that would actually be written into the document.
+        accepted, _, _ = validate(result, document, playbook)
+        predicted = [a.edit for a in accepted]
+        pairs = match_edits(predicted, gold.edits)
+        n_predicted += len(predicted)
+        n_gold += len(gold.edits)
+        n_matched += len(pairs)
+        span_f1 += [token_f1(p.find, g.find) for p, g in pairs]
+    return {
+        "gold_files": len(gold_files),
+        "predicted": n_predicted,
+        "gold": n_gold,
+        "precision": rate(n_matched, n_predicted),
+        "recall": rate(n_matched, n_gold),
+        "span_token_f1": sum(span_f1) / len(span_f1) if span_f1 else None,
         "usage": usage_summary(provider),
     }
 
