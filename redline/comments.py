@@ -5,7 +5,7 @@ from docx.oxml.ns import qn
 from docx.text.run import Run
 from lxml import etree
 
-from redline.parse import Paragraph
+from redline.parse import Paragraph, paragraph_runs
 
 REVISION_WRAPPERS = (qn("w:ins"), qn("w:del"))
 
@@ -56,7 +56,8 @@ def add_comment(
 
 
 def comment_on_paragraph(document: Document, para: Paragraph, text: str, author: str, date: datetime) -> int:
-    runs = [s.element for s in para.runs if s.end > s.start] or [s.element for s in para.runs]
+    # Rescan: earlier edits may have split or wrapped this paragraph's runs.
+    runs = [s.element for s in paragraph_runs(para.element)]
     if not runs:
         r = etree.SubElement(para.element, qn("w:r"))
         runs = [r]
