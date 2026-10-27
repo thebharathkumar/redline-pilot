@@ -42,7 +42,12 @@ def parse_date(value: str | None) -> datetime:
 
 
 def live_provider(mode: str):
-    raise SystemExit("live review is not available yet; use --offline RESPONSE.json")
+    from redline.anthropic_provider import AnthropicProvider, ProviderError
+
+    try:
+        return AnthropicProvider()
+    except ProviderError as e:
+        raise SystemExit(f"error: {e}")
 
 
 def run_review(args) -> int:
