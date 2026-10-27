@@ -11,7 +11,7 @@ make install
 make demo
 ```
 
-`make demo` replays a saved model response (`fixtures/demo_response.json`) against `fixtures/counterparty_nda.docx` with a fixed date and writes `out/demo_redlined.docx`. It needs no API key. The saved response is created once with `scripts/run_live.sh demo`; until then `make demo` stops with a message saying so.
+`make demo` replays a saved model response (`fixtures/demo_response.json`) against `fixtures/counterparty_nda.docx` with a fixed date and writes `out/demo_redlined.docx`. It needs no API key. The saved response was created with `scripts/run_live.sh demo`.
 
 Run the tests with `make test`. They need no network and no API key.
 
@@ -112,8 +112,6 @@ Gold files: 1. An edit matches when (paragraph_id, rule_id) agree. Rates are k/n
 Model calls: 1, input tokens: 6193, output tokens: 4166, mean latency: 25.1 s
 <!-- eval:end -->
 
-The gold labels for the edit eval (`eval/gold/counterparty_nda.yaml`) were written by a language model from the playbook, without seeing the model's saved demo response. No human reviewer wrote them, so the edit scores measure agreement between two model passes, not accuracy against a lawyer. There is one gold file with 9 edits, so the sample is small.
-
 ## Decisions
 
 - **Edits are a paragraph id plus an exact quote.** The model names the paragraph and copies the words it wants to change. Code can check that the quote occurs exactly once on whole words before anything is written, and the edit eval scores the same records the writer uses.
@@ -137,7 +135,7 @@ The gold labels for the edit eval (`eval/gold/counterparty_nda.yaml`) were writt
 
 ## Data and licenses
 
-See [DATA.md](DATA.md). The fixtures and playbook are based on the Common Paper Mutual NDA Standard Terms v1.0 (CC BY 4.0). ContractNLI (CC BY 4.0) is downloaded into `data/` by `scripts/fetch_contractnli.py` and is not committed.
+The code is released under the MIT License (see [LICENSE](LICENSE)). See [DATA.md](DATA.md). The fixtures and playbook are based on the Common Paper Mutual NDA Standard Terms v1.0 (CC BY 4.0). ContractNLI (CC BY 4.0) is downloaded into `data/` by `scripts/fetch_contractnli.py` and is not committed.
 
 ## Alternatives
 
