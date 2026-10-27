@@ -17,7 +17,7 @@ from redline.validate import validate
 ROOT = Path(__file__).resolve().parent.parent
 CONTRACT = ROOT / "fixtures/counterparty_nda.docx"
 PLAYBOOK = ROOT / "playbooks/nda.yaml"
-REPLAY = ROOT / "tests/data/replay_response.json"
+REPLAY = ROOT / "tests/inputs/replay_response.json"
 DATE = "2026-01-01T00:00:00Z"
 
 

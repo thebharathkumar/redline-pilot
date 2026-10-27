@@ -1,0 +1,75 @@
+{
+  "edits": [
+    {
+      "paragraph_id": "p0011",
+      "rule_id": "term-length",
+      "find": "In perpetuity.",
+      "replace": "1 year from Effective Date, but in the case of trade secrets until Confidential Information is no longer considered a trade secret under applicable laws.",
+      "comment": "Test input: restore the one year term."
+    },
+    {
+      "paragraph_id": "p0013",
+      "rule_id": "law-venue",
+      "find": "Texas",
+      "replace": "New York",
+      "comment": "Test input: governing law."
+    },
+    {
+      "paragraph_id": "p0015",
+      "rule_id": "law-venue",
+      "find": "Travis County, Texas",
+      "replace": "New York County, New York",
+      "comment": "Test input: venue."
+    },
+    {
+      "paragraph_id": "p0039",
+      "rule_id": "ci-marking",
+      "find": "is marked “confidential” or “proprietary” at the time of disclosure to the receiving party (“Receiving Party”) and, if disclosed orally,",
+      "replace": "the Disclosing Party identifies as “confidential”, “proprietary”, or the like to the receiving party (“Receiving Party”) or which,",
+      "comment": "Test input: edit across bold runs."
+    },
+    {
+      "paragraph_id": "p0040",
+      "rule_id": "disc-advisors",
+      "find": "to its employees having",
+      "replace": "to its employees, agents, advisors, contractors and other representatives having",
+      "comment": "Test input: restore advisors."
+    },
+    {
+      "paragraph_id": "p0048",
+      "rule_id": "rem-equitable",
+      "find": "is entitled to an injunction without posting a bond, and the Receiving Party will pay liquidated damages of $50,000 for each breach, in addition to the Disclosing Party’s other remedies.",
+      "replace": "is entitled to seek appropriate equitable relief, including an injunction, in addition to its other remedies.",
+      "comment": "Test input: remove liquidated damages."
+    },
+    {
+      "paragraph_id": "p0039",
+      "rule_id": "ci-scope",
+      "find": "MNDA",
+      "replace": "Agreement",
+      "comment": "Test input: should be dropped, find occurs more than once."
+    },
+    {
+      "paragraph_id": "p0042",
+      "rule_id": "disc-legal",
+      "find": "text that is not in the paragraph",
+      "replace": "anything",
+      "comment": "Test input: should be dropped, find not present."
+    },
+    {
+      "paragraph_id": "p0042",
+      "rule_id": "no-such-rule",
+      "find": "subpoena",
+      "replace": "summons",
+      "comment": "Test input: should be dropped, unknown rule."
+    }
+  ],
+  "missing": [
+    {
+      "rule_id": "ret-retention",
+      "after_paragraph_id": "p0044",
+      "text": "The Receiving Party may retain Confidential Information in accordance with its standard backup or record retention policies or as required by law.",
+      "comment": "Test input: retention carve-out removed."
+    }
+  ]
+}
