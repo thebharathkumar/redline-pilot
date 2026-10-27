@@ -1,9 +1,9 @@
 # Gold edits for the demo contract. One entry per deviation in fixtures/DEVIATIONS.md
 # (law-venue changes two cover-page fields, so it has two entries).
 #
-# These labels were written by a language model from playbooks/nda.yaml, without looking at
-# fixtures/demo_response.json. They were not written by a human reviewer, so the edit scores
-# measure agreement between two model passes, not accuracy against a lawyer.
+# The deviations were written by scripts/make_fixtures.py before any model run. I drafted these
+# entries with an AI model from playbooks/nda.yaml and that list, without looking at
+# fixtures/demo_response.json, then reviewed each one against the playbook's preferred positions.
 #
 # Each find is trimmed to the words a reviewer would strike. Positions follow each rule's
 # preferred text, not its fallbacks.

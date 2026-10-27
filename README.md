@@ -125,7 +125,7 @@ Model calls: 1, input tokens: 6193, output tokens: 4166, mean latency: 25.1 s
 ## Limits
 
 - **Small samples.** Detection uses 25 ContractNLI documents and the intervals are wide; ci-oral has a single positive example. The edit eval has one gold file with 9 edits.
-- **Model-written gold labels.** The edit eval's gold file was written by a language model, so its scores show agreement between two model passes, not accuracy against a lawyer.
+- **Gold labels.** The gold edits undo the deviations planted in the demo contract (`fixtures/DEVIATIONS.md`, written before any model run). I drafted them with an AI model from the playbook and that list, without the model's review output, then reviewed each one against the playbook. Because a model drafted them, agreement with the reviewer's edits may be higher than it would be against labels written from scratch.
 - **Run-to-run variance.** Re-running the edit eval with the same gold file moved find F1 from 0.74 to 0.80 and replace F1 from 0.73 to 0.78, so a single run is noisy.
 - **Approximate detection labels.** A rule counts as flagged when the model proposes any edit or missing-clause note for it. ContractNLI labels whether a clause entails or contradicts a hypothesis, not whether a buyer would push back, so some of the gap between precision and recall may be clauses a buyer would still push back on. How much was not measured.
 - **Missing clauses are comments only.** A required clause that is absent gets a comment with suggested text, not a tracked paragraph insertion.
