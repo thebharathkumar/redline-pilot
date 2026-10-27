@@ -1,0 +1,76 @@
+{
+  "model": "claude-sonnet-5-5",
+  "edits": [
+    {
+      "paragraph_id": "p0039",
+      "rule_id": "ci-marking",
+      "find": "which is marked “confidential” or “proprietary” at the time of disclosure to the",
+      "replace": "which the Disclosing Party identifies as confidential, proprietary or the like, or which should reasonably be understood as confidential or proprietary due to its nature and the circumstances of its disclosure, to the",
+      "comment": "Protection should not depend on a marking at the time of disclosure. Information the discloser identifies as confidential, or that is reasonably understood to be confidential, should be covered."
+    },
+    {
+      "paragraph_id": "p0039",
+      "rule_id": "ci-oral",
+      "find": "and, if disclosed orally, is summarized in writing and marked as confidential within ten (10) days of disclosure",
+      "replace": "whether disclosed in writing, orally or visually",
+      "comment": "Oral and visual disclosures, such as calls and demos, should be protected the same way as written information, without a written summary requirement."
+    },
+    {
+      "paragraph_id": "p0039",
+      "rule_id": "ci-scope",
+      "find": "Confidential Information is limited to technical information, source code and trade secrets.",
+      "replace": "",
+      "comment": "Limiting Confidential Information to technical information excludes business information such as pricing, roadmaps and compliance documentation. It also conflicts with the sentence covering the existence of the discussions, so we propose deleting it."
+    },
+    {
+      "paragraph_id": "p0040",
+      "rule_id": "disc-advisors",
+      "find": "employees having",
+      "replace": "employees, agents, advisors, contractors and other representatives having",
+      "comment": "The Receiving Party should be able to share with advisors, contractors and other representatives who need to know, on the same conditions as employees. The Receiving Party remains responsible for their compliance."
+    },
+    {
+      "paragraph_id": "p0042",
+      "rule_id": "disc-legal",
+      "find": "uses best efforts, at the Receiving Party’s expense, to contest the requirement and to support the Disclosing Party’s efforts to obtain confidential treatment",
+      "replace": "reasonably cooperates, at the Disclosing Party’s expense, with the Disclosing Party’s efforts to obtain confidential treatment",
+      "comment": "The Receiving Party should not be required to contest a legal requirement at its own expense. Reasonable cooperation at the Disclosing Party’s expense is the usual balance."
+    },
+    {
+      "paragraph_id": "p0011",
+      "rule_id": "term-length",
+      "find": "In perpetuity",
+      "replace": "1 year from Effective Date, except that trade secrets are protected for as long as they remain trade secrets under applicable law",
+      "comment": "Perpetual confidentiality for all information is too broad. We propose a one-year period, with trade secrets protected for as long as they qualify as trade secrets."
+    },
+    {
+      "paragraph_id": "p0044",
+      "rule_id": "ret-retention",
+      "find": "The Receiving Party will permanently delete all Confidential Information, including copies held in electronic backup systems.",
+      "replace": "The Receiving Party may retain Confidential Information in accordance with its standard backup or record retention policies or as required by law, but the terms of this MNDA will continue to apply to the retained Confidential Information.",
+      "comment": "Permanent deletion from backup systems is often technically impractical. Retained copies stay protected by this MNDA."
+    },
+    {
+      "paragraph_id": "p0048",
+      "rule_id": "rem-equitable",
+      "find": "is entitled to an injunction without posting a bond, and the Receiving Party will pay liquidated damages of $50,000 for each breach, in addition to",
+      "replace": "may seek an injunction without posting a bond, in addition to",
+      "comment": "A fixed liquidated damages amount per breach operates as a penalty and is not acceptable. The Disclosing Party can still seek injunctive relief without a bond, plus its other remedies."
+    },
+    {
+      "paragraph_id": "p0013",
+      "rule_id": "law-venue",
+      "find": "Texas",
+      "replace": "New York",
+      "comment": "We propose New York governing law."
+    },
+    {
+      "paragraph_id": "p0015",
+      "rule_id": "law-venue",
+      "find": "Travis County, Texas",
+      "replace": "New York County, New York",
+      "comment": "We propose exclusive jurisdiction in the state and federal courts located in New York County, New York, consistent with New York governing law."
+    }
+  ],
+  "missing": []
+}
