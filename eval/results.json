@@ -243,5 +243,39 @@
       "output_tokens": 115769,
       "mean_seconds": 32.21955835172208
     }
+  },
+  "edits": {
+    "model": "claude-sonnet-5-5",
+    "date": "2026-10-27T08:47:43Z",
+    "command": "redline eval --edits eval/gold",
+    "gold_files": 1,
+    "predicted": 10,
+    "gold": 9,
+    "precision": {
+      "k": 9,
+      "n": 10,
+      "value": 0.9,
+      "ci95": [
+        0.5958499732047615,
+        0.9821237869049271
+      ]
+    },
+    "recall": {
+      "k": 9,
+      "n": 9,
+      "value": 1.0,
+      "ci95": [
+        0.7008549515804559,
+        1.0
+      ]
+    },
+    "find_token_f1": 0.743416358764567,
+    "replace_token_f1": 0.7346001544456661,
+    "usage": {
+      "calls": 1,
+      "input_tokens": 6193,
+      "output_tokens": 4101,
+      "mean_seconds": 24.453365915978793
+    }
   }
 }

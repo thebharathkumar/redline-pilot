@@ -22,3 +22,20 @@ ContractNLI test split, n = 25 documents. A rule should be flagged when the Cont
 | overall | | 61/93 = 0.66 [0.55, 0.74] | 61/72 = 0.85 [0.75, 0.91] | 0.74 |
 
 Model calls: 25, input tokens: 174868, output tokens: 115769, mean latency: 32.2 s
+
+## Edits
+
+Model: claude-sonnet-5-5  
+Date: 2026-10-27T08:47:43Z  
+Command: `redline eval --edits eval/gold`
+
+Gold files: 1. An edit matches when (paragraph_id, rule_id) agree. Rates are k/n with a Wilson 95% interval.
+
+| metric | value |
+|---|---|
+| precision | 9/10 = 0.90 [0.60, 0.98] |
+| recall | 9/9 = 1.00 [0.70, 1.00] |
+| find F1: mean token F1 of the targeted wording, matched edits | 0.74 |
+| replace F1: mean token F1 of the proposed wording, matched edits | 0.73 |
+
+Model calls: 1, input tokens: 6193, output tokens: 4101, mean latency: 24.5 s
