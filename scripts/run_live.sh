@@ -28,9 +28,15 @@ demo() {
     make demo
 }
 
+detection() {
+    "$PY" scripts/fetch_contractnli.py --n 25
+    "$PY" -m redline.cli eval --detection contractnli --n 25
+}
+
 step="${1:-all}"
 case "$step" in
     demo) demo ;;
-    all) demo ;;
-    *) echo "usage: scripts/run_live.sh [demo|all]" >&2; exit 2 ;;
+    detection) detection ;;
+    all) demo; detection ;;
+    *) echo "usage: scripts/run_live.sh [demo|detection|all]" >&2; exit 2 ;;
 esac

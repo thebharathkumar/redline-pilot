@@ -75,12 +75,36 @@ def run_review(args) -> int:
     return 0
 
 
-def main(argv: list[str] | None = None) -> int:
+def run_eval(args, argv: list[str], provider=None) -> int:
+    from pathlib import Path
+
+    from redline import contractnli, evaluate
+
+    if not args.detection and not args.edits:
+        print("error: give --detection contractnli and/or --edits GOLD_DIR", file=sys.stderr)
+        return 2
+    playbook = load_playbook("playbooks/nda.yaml")
+    provider = provider or live_provider("single")
+    command = "redline " + " ".join(argv)
+    model = getattr(provider, "model", None)
+    if args.detection:
+        data = evaluate.run_detection(
+            provider, playbook, args.n, contractnli.DOCX_DIR, contractnli.DATA / "responses" / "contractnli",
+        )
+        evaluate.write_results("detection", data, model, command)
+    if args.edits:
+        print("error: --edits is not implemented yet", file=sys.stderr)
+        return 2
+    print(f"wrote {evaluate.RESULTS_JSON} and {evaluate.RESULTS_MD}", file=sys.stderr)
+    return 0
+
+
+def main(argv: list[str] | None = None, provider=None) -> int:
+    argv = sys.argv[1:] if argv is None else argv
     args = build_parser().parse_args(argv)
     if args.command == "review":
         return run_review(args)
-    print("redline eval: not implemented yet", file=sys.stderr)
-    return 2
+    return run_eval(args, argv, provider)
 
 
 if __name__ == "__main__":

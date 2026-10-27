@@ -15,3 +15,15 @@
     since the counterparty variant changes them.
   - fixtures/counterparty_nda.docx applies the deviations listed in fixtures/DEVIATIONS.md.
   - Playbook suggested text paraphrases or shortens the Standard Terms.
+
+## ContractNLI
+
+- Source: https://stanfordnlp.github.io/contract-nli/ (archive
+  https://stanfordnlp.github.io/contract-nli/resources/contract-nli.zip), released by Hitachi America, Ltd.
+- Paper: Koreeda and Manning, "ContractNLI: A Dataset for Document-level Natural Language Inference
+  for Contracts", Findings of EMNLP 2021.
+- License: CC BY 4.0 (see the archive's LICENSE and TERMS files).
+- Not committed. scripts/fetch_contractnli.py downloads it into data/ (gitignored).
+- Changes: the first N documents of the test split are converted to .docx, one paragraph per
+  non-empty line of the document text. Labels are copied unchanged into data/contractnli_docx/labels.json.
+- Used by `redline eval --detection contractnli` for the playbook rules that name a hypothesis.
